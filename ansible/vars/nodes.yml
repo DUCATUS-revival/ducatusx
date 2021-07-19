@@ -1,0 +1,2 @@
+workdir: /var/www/ducatusx
+docker_compose_file: docker-compose.yml

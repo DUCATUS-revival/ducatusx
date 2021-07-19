@@ -1,0 +1,80 @@
+- name: Setup common backend configurations
+  hosts: all
+  vars_files:
+    - "../vars/nodes.yml"
+
+
+  tasks:
+    - name: Create directory
+      file:
+        path: "/var/www"
+        state: directory
+
+    - name: Clone repository
+      git:
+        repo: https://github.com/DUCATUS-revival/ducatusx.git
+        dest: "{{ workdir }}"
+
+    - name: Set env
+      template: 
+        src: ../templates/env.j2
+        dest: "{{ workdir }}/.env"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0644
+
+    - name: Set configurations (testnet)
+      block:
+        - name: Copy chain.json (testnet)
+          copy:
+            src: ../../chain.testnet.json
+            dest: "{{ workdir }}/chain.json"
+            remote_src: False
+
+        - name: Set config (testnet)
+          template: 
+            src: ../templates/config.testnet.j2
+            dest: "{{ workdir }}/config.toml"
+            owner: "{{ ansible_user }}"
+            group: "{{ ansible_user }}"
+            mode: 0644
+          
+        - name: Copy keys (testnet)
+          ansible.posix.synchronize:
+            src: "../keys/testnet/{{ ansible_host }}/keys"
+            dest: "{{ workdir }}/keys"
+        
+        - name: Copy node.pwd (testnet)
+          ansible.posix.synchronize:
+            src: "../keys/testnet/{{ ansible_host }}/node.pwd"
+            dest: "{{ workdir }}/node.pwd"
+
+      when: is_testnet == True
+
+    - name: Set configurations (mainnet)
+      block:
+        - name: Copy chain.json (mainnet)
+          copy:
+            src: ../../chain.json
+            dest: "{{ workdir }}/chain.json"
+            remote_src: False
+
+        - name: Set config (mainnet)
+          template: 
+            src: ../templates/config.mainnet.j2
+            dest: "{{ workdir }}/config.toml"
+            owner: "{{ ansible_user }}"
+            group: "{{ ansible_user }}"
+            mode: 0644
+
+        - name: Copy keys (testnet)
+          ansible.posix.synchronize:
+            src: "../keys/mainnet/{{ ansible_host }}/keys"
+            dest: "{{ workdir }}/keys"
+        
+        - name: Copy node.pwd (testnet)
+          ansible.posix.synchronize:
+            src: "../keys/mainnet/{{ ansible_host }}/node.pwd"
+            dest: "{{ workdir }}/node.pwd"
+      
+      when: is_testnet == False

@@ -1,0 +1,13 @@
+[Unit]
+Description=Parity Ethereum Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/parity --config /etc/ducatusx/config.toml
+
+Restart=on-failure
+
+KillSignal=SIGHUP
+
+[Install]
+WantedBy=default.target
