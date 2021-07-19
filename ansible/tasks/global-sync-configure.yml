@@ -33,7 +33,7 @@
 
         - name: Set config (testnet)
           template: 
-            src: ../templates/config.testnet.j2
+            src: ../templates/config.testnet.toml.j2
             dest: "{{ workdir }}/config.toml"
             owner: "{{ ansible_user }}"
             group: "{{ ansible_user }}"
@@ -55,13 +55,13 @@
       block:
         - name: Copy chain.json (mainnet)
           copy:
-            src: ../../chain.json
+            src: ../../chain.mainnet.json
             dest: "{{ workdir }}/chain.json"
             remote_src: False
 
         - name: Set config (mainnet)
           template: 
-            src: ../templates/config.mainnet.j2
+            src: ../templates/config.mainnet.toml.j2
             dest: "{{ workdir }}/config.toml"
             owner: "{{ ansible_user }}"
             group: "{{ ansible_user }}"
