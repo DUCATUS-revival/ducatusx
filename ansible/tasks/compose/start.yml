@@ -1,11 +1,11 @@
 - name: Start nodes
   hosts: all
+  become: yes
   vars_files:
   - "../../vars/nodes.yml"
 
   tasks:
   - name: Start services
-    become: yes
     command:
       cmd: >
         docker-compose

@@ -1,6 +1,7 @@
 
 - name: Build and deploy nodes
   hosts: all
+  become: yes
   vars_files:
   - "../../vars/nodes.yml"
 
@@ -18,7 +19,6 @@
   #       docker system prune -a -f
 
   - name: Create and start services
-    become: yes
     command:
       cmd: >
         docker-compose

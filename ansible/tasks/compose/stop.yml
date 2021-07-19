@@ -5,7 +5,6 @@
 
   tasks:
   - name: Stop services
-    become: yes
     command:
       cmd: >
         docker-compose

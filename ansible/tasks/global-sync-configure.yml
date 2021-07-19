@@ -1,5 +1,6 @@
 - name: Setup common backend configurations
   hosts: all
+  become: yes
   vars_files:
     - "../vars/nodes.yml"
 
@@ -19,9 +20,9 @@
       template: 
         src: ../templates/env.j2
         dest: "{{ workdir }}/.env"
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-        mode: 0644
+        # owner: "{{ ansible_user }}"
+        # group: "{{ ansible_user }}"
+        # mode: 0644
 
     - name: Set configurations (testnet)
       block:
@@ -41,12 +42,12 @@
           
         - name: Copy keys (testnet)
           ansible.posix.synchronize:
-            src: "../keys/testnet/{{ ansible_host }}/keys"
+            src: "../keys/testnet/{{ inventory_hostname }}/keys/"
             dest: "{{ workdir }}/keys"
         
         - name: Copy node.pwd (testnet)
           ansible.posix.synchronize:
-            src: "../keys/testnet/{{ ansible_host }}/node.pwd"
+            src: "../keys/testnet/{{ inventory_hostname }}/node.pwd"
             dest: "{{ workdir }}/node.pwd"
 
       when: is_testnet == True
@@ -69,12 +70,12 @@
 
         - name: Copy keys (testnet)
           ansible.posix.synchronize:
-            src: "../keys/mainnet/{{ ansible_host }}/keys"
+            src: "../keys/mainnet/{{ inventory_hostname }}/keys"
             dest: "{{ workdir }}/keys"
         
         - name: Copy node.pwd (testnet)
           ansible.posix.synchronize:
-            src: "../keys/mainnet/{{ ansible_host }}/node.pwd"
+            src: "../keys/mainnet/{{ inventory_hostname }}/node.pwd"
             dest: "{{ workdir }}/node.pwd"
       
       when: is_testnet == False
