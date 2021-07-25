@@ -1,2 +1,3 @@
-workdir: /var/www/ducatusx
+manager_workdir: /var/www/ducatusx
+worker_config_path: /var/www/ducatusx-config
 docker_compose_file: docker-compose.yml

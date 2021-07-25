@@ -1,4 +1,9 @@
 ansible/keys/
 .env
 ansible/hosts.yml
+keys
+data
+config.toml
+chain.json
+node.pwd
 

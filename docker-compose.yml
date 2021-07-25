@@ -4,11 +4,11 @@ services:
     image: 'parity/parity:${PARITY_VERSION}'
     # image: 'openethereum/openethereum:${OPENETHEREUM_VERSION}'
     volumes:
-      - './data:/srv/ducatusx/'
-      - './keys:/srv/keys/'
-      - "./config.toml:/srv/config/config.toml"
-      - "./chain.json:/srv/config/chain.json"
-      - "./node.pwd:/srv/config/node.pwd"
+      - '${PARITY_WORKER_PATH}/data:/srv/ducatusx/'
+      - '${PARITY_WORKER_PATH}/keys:/srv/keys/'
+      - "${PARITY_WORKER_PATH}/config.toml:/srv/config/config.toml"
+      - "${PARITY_WORKER_PATH}/chain.json:/srv/config/chain.json"
+      - "${PARITY_WORKER_PATH}/node.pwd:/srv/config/node.pwd"
       
     user: root
     restart: unless-stopped

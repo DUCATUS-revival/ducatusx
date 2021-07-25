@@ -11,31 +11,38 @@
         path: "/var/www"
         state: directory
 
-    - name: Clone repository
-      git:
-        repo: https://github.com/DUCATUS-revival/ducatusx.git
-        dest: "{{ workdir }}"
+    - name: Setup manager 
+      block:
+        - name: Clone repository
+          git:
+            repo: https://github.com/DUCATUS-revival/ducatusx.git
+            dest: "{{ manager_workdir }}"
 
-    - name: Set env
-      template: 
-        src: ../templates/env.j2
-        dest: "{{ workdir }}/.env"
-        # owner: "{{ ansible_user }}"
-        # group: "{{ ansible_user }}"
-        # mode: 0644
+        - name: Set env
+          template: 
+            src: ../templates/env.j2
+            dest: "{{ manager_workdir }}/.env"
 
+      when: is_swarm_manager == True
+
+    - name: Create config directory
+      file:
+        path: "{{ worker_config_path }}"
+        state: directory
+
+    
     - name: Set configurations (testnet)
       block:
         - name: Copy chain.json (testnet)
           copy:
             src: ../../chain.testnet.json
-            dest: "{{ workdir }}/chain.json"
+            dest: "{{ worker_config_path }}/chain.json"
             remote_src: False
 
         - name: Set config (testnet)
           template: 
             src: ../templates/config.testnet.toml.j2
-            dest: "{{ workdir }}/config.toml"
+            dest: "{{ worker_config_path }}/config.toml"
             # owner: "{{ ansible_user }}"
             # group: "{{ ansible_user }}"
             mode: 0644
@@ -43,12 +50,12 @@
         - name: Copy keys (testnet)
           ansible.posix.synchronize:
             src: "../keys/testnet/{{ inventory_hostname }}/keys/"
-            dest: "{{ workdir }}/keys"
+            dest: "{{ worker_config_path }}/keys"
         
         - name: Copy node.pwd (testnet)
           ansible.posix.synchronize:
             src: "../keys/testnet/{{ inventory_hostname }}/node.pwd"
-            dest: "{{ workdir }}/node.pwd"
+            dest: "{{ worker_config_path }}/node.pwd"
 
       when: is_testnet == True
 
@@ -57,13 +64,13 @@
         - name: Copy chain.json (mainnet)
           copy:
             src: ../../chain.mainnet.json
-            dest: "{{ workdir }}/chain.json"
+            dest: "{{ worker_config_path }}/chain.json"
             remote_src: False
 
         - name: Set config (mainnet)
           template: 
             src: ../templates/config.mainnet.toml.j2
-            dest: "{{ workdir }}/config.toml"
+            dest: "{{ worker_config_path }}/config.toml"
             # owner: "{{ ansible_user }}"
             # group: "{{ ansible_user }}"
             mode: 0644
@@ -71,11 +78,11 @@
         - name: Copy keys (testnet)
           ansible.posix.synchronize:
             src: "../keys/mainnet/{{ inventory_hostname }}/keys"
-            dest: "{{ workdir }}/keys"
+            dest: "{{ worker_config_path }}/keys"
         
         - name: Copy node.pwd (testnet)
           ansible.posix.synchronize:
             src: "../keys/mainnet/{{ inventory_hostname }}/node.pwd"
-            dest: "{{ workdir }}/node.pwd"
+            dest: "{{ worker_config_path }}/node.pwd"
       
       when: is_testnet == False
