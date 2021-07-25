@@ -5,10 +5,17 @@
       "params": {
         "stepDuration": "5",
         "validators": {
-          "list": [
-            "0x00ede40cc05b611d09ce16853a462fcc04a15d93",
-            "0x00978b65af5bfc791b5def1700677ed9c64fd816"
-          ]
+          "multi": {
+            "0": {
+              "list": [
+                "0x00ede40cc05b611d09ce16853a462fcc04a15d93",
+                "0x00978b65af5bfc791b5def1700677ed9c64fd816"
+              ]
+            },
+            "700300": {
+              "contract": "0x8EFA5a78aAFdDd6525076285faD78f814765d6f6"
+            }
+          }
         }
       }
     }
