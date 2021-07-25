@@ -23,13 +23,17 @@
             src: ../templates/env.j2
             dest: "{{ manager_workdir }}/.env"
 
-      when: is_swarm_manager == True
+      when: (is_swarm_manager is defined) and (is_swarm_manager == True)
 
     - name: Create config directory
       file:
         path: "{{ worker_config_path }}"
         state: directory
 
+    - name: Create config-data directory
+      file:
+        path: "{{ worker_config_path }}/data"
+        state: directory
     
     - name: Set configurations (testnet)
       block:
