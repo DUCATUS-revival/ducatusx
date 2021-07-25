@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  openethereum-1:
+  ducatusx:
     image: 'parity/parity:${PARITY_VERSION}'
     # image: 'openethereum/openethereum:${OPENETHEREUM_VERSION}'
     volumes:
