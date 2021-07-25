@@ -9,6 +9,7 @@ light = false
 [network]
 allow_ips = "public"
 port = 30301
+nat = "extip:{{ ansible_host }}"
 
 [rpc]
 interface = "all"

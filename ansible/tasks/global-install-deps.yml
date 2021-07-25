@@ -196,7 +196,7 @@
           shell: firewall-cmd --add-port=30300/tcp
 
         - name: FirewallD - Enable 30300 (UDP) port
-          shell: firewall-cmd --add-port=30301/udp
+          shell: firewall-cmd --add-port=30300/udp
 
           # Parity - mainnet
         - name: FirewallD - Enable 30301 (TCP) port
