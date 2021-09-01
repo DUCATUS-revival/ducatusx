@@ -79,12 +79,12 @@
             # group: "{{ ansible_user }}"
             mode: 0644
 
-        - name: Copy keys (testnet)
+        - name: Copy keys (mainnet)
           ansible.posix.synchronize:
-            src: "../keys/mainnet/{{ inventory_hostname }}/keys"
+            src: "../keys/mainnet/{{ inventory_hostname }}/keys/"
             dest: "{{ worker_config_path }}/keys"
         
-        - name: Copy node.pwd (testnet)
+        - name: Copy node.pwd (mainnet)
           ansible.posix.synchronize:
             src: "../keys/mainnet/{{ inventory_hostname }}/node.pwd"
             dest: "{{ worker_config_path }}/node.pwd"
