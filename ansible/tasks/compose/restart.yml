@@ -9,12 +9,12 @@
     command:
       cmd: >
         docker-compose
-        -f {{ workdir }}/{{ docker_compose_file }}
+        -f {{ manager_workdir }}/{{ docker_compose_file }}
         stop
 
   - name: Start services
     command:
       cmd: >
         docker-compose
-        -f {{ workdir }}/{{ docker_compose_file }}
+        -f {{ manager_workdir }}/{{ docker_compose_file }}
         start
