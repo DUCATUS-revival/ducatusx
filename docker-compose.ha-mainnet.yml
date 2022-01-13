@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   ducatusx1:
-    image: openethereum/openethereum:v3.3.3'
+    image: openethereum/openethereum:v3.3.3
     volumes:
       - '.docker/node1/data:/srv/ducatusx/'
       - "ha/config.mainnet.toml:/srv/config/config.toml"
@@ -17,7 +17,7 @@ services:
       - "1003:30301/tcp"
       - "1003:30301/udp"
   ducatusx2:
-    image: 'openethereum/openethereum:v3.3.3'
+    image: openethereum/openethereum:v3.3.3
     volumes:
       - '.docker/node2/data:/srv/ducatusx/'
       - "ha/config.mainnet.toml:/srv/config/config.toml"
