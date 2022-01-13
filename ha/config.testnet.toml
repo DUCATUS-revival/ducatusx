@@ -14,8 +14,8 @@ interface = "all"
 cors = ["all"]
 port = 8545
 apis = ["web3", "eth", "net", "personal", "parity", "parity_pubsub", "parity_set", "traces", "rpc", "parity_accounts", "pubsub"]
-jsonrpc_threads = 16
-jsonrpc_server_threads = 16
+processing_threads = 16
+server_threads = 16
 
 
 [websockets]
