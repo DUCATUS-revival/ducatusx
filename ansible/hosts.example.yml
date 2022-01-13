@@ -3,11 +3,31 @@ all:
     ansible_user:
       root
 
-nodes:
-  # vars:
-  #   compose_file:
+testnet:
+  vars:
+    parity_version: v2.5.11-stable
+    is_testnet: True
   hosts:
-    node1:
-      ansible_host: 127.0.0.1
-    node2:
-      ansible_host: 127.0.0.1
+    testnet-node-1:
+      ansible_host: 123.456.78.910
+      node_eth_address: "0x.."
+      is_swarm_manager: True
+    testnet-node-2:
+      ansible_host: 123.456.78.910
+      node_eth_address: "0x.."
+
+mainnet:
+  vars:
+    parity_version: v2.7.2-stable
+    is_testnet: False
+  hosts:
+    mainnet-node-1:
+      ansible_host: 123.456.78.910
+      node_eth_address: "0x.."
+      is_swarm_manager: True
+    mainnet-node-2:
+      ansible_host: 123.456.78.910
+      node_eth_address: "0x.."
+    mainnet-node-3:
+      ansible_host: 123.456.78.910
+      node_eth_address: "0x.."

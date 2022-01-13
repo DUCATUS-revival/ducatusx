@@ -2,7 +2,7 @@
 - name: Install deployment dependencies
   hosts: all
   become: yes
-  # become_method: sudo
+  become_method: sudo
   # vars_files:
   #   - "../vars/environment.yml"
   
@@ -157,57 +157,57 @@
             name: python3-dev
             state: present
 
-        - name: Apt - Install Python3 dev
+        - name: Apt - Install Python3 pip
           apt:
             name: python3-pip
             state: present
 
       when: ansible_facts['distribution'] == 'Ubuntu'
 
-    - name: FirewallD setup
-      block:
-        - name: Systemd - Enable firewalld service
-          systemd:
-            name: firewalld
-            state: started
-            enabled: yes
+    # - name: FirewallD setup
+    #   block:
+    #     - name: Systemd - Enable firewalld service
+    #       systemd:
+    #         name: firewalld
+    #         state: started
+    #         enabled: yes
 
-        - name: FirewallD - Enable SSH
-          shell: firewall-cmd --add-service=ssh
+    #     - name: FirewallD - Enable SSH
+    #       shell: firewall-cmd --add-service=ssh
 
-          # RPC - testnet
-        - name: FirewallD - Enable 8545 port
-          shell: firewall-cmd --add-port=8545/tcp
+    #       # RPC - testnet
+    #     - name: FirewallD - Enable 8545 port
+    #       shell: firewall-cmd --add-port=8545/tcp
 
-          # RPC - mainnet
-        - name: FirewallD - Enable 8546 port
-          shell: firewall-cmd --add-port=8546/tcp
+    #       # RPC - mainnet
+    #     - name: FirewallD - Enable 8546 port
+    #       shell: firewall-cmd --add-port=8546/tcp
         
-          # WS - testnet
-        - name: FirewallD - Enable 8455 port
-          shell: firewall-cmd --add-port=8455/tcp
+    #       # WS - testnet
+    #     - name: FirewallD - Enable 8455 port
+    #       shell: firewall-cmd --add-port=8455/tcp
 
-          # WS - mainnet
-        - name: FirewallD - Enable 8456 port
-          shell: firewall-cmd --add-port=8456/tcp
+    #       # WS - mainnet
+    #     - name: FirewallD - Enable 8456 port
+    #       shell: firewall-cmd --add-port=8456/tcp
         
-          # Parity - testnet
-        - name: FirewallD - Enable 30300 (TCP) port
-          shell: firewall-cmd --add-port=30300/tcp
+    #       # Parity - testnet
+    #     - name: FirewallD - Enable 30300 (TCP) port
+    #       shell: firewall-cmd --add-port=30300/tcp
 
-        - name: FirewallD - Enable 30300 (UDP) port
-          shell: firewall-cmd --add-port=30300/udp
+    #     - name: FirewallD - Enable 30300 (UDP) port
+    #       shell: firewall-cmd --add-port=30300/udp
 
-          # Parity - mainnet
-        - name: FirewallD - Enable 30301 (TCP) port
-          shell: firewall-cmd --add-port=30301/tcp
+    #       # Parity - mainnet
+    #     - name: FirewallD - Enable 30301 (TCP) port
+    #       shell: firewall-cmd --add-port=30301/tcp
 
-        - name: FirewallD - Enable 30301 (UDP) port
-          shell: firewall-cmd --add-port=30301/udp
+    #     - name: FirewallD - Enable 30301 (UDP) port
+    #       shell: firewall-cmd --add-port=30301/udp
 
 
-        - name: FirewallD - Make configuration permanent
-          shell: firewall-cmd --runtime-to-permanent
+    #     - name: FirewallD - Make configuration permanent
+    #       shell: firewall-cmd --runtime-to-permanent
 
     - name: Pip dependencies
       block:
