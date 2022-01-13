@@ -4,7 +4,6 @@ chain = "/srv/config/chain.json"
 db_path = "/srv/ducatusx/chains"
 keys_path = "/srv/keys"
 identity = ""
-light = false
 
 [network]
 allow_ips = "public"
@@ -14,10 +13,9 @@ port = 30300
 interface = "all"
 cors = ["all"]
 port = 8545
-apis = ["web3", "eth", "net", "personal", "parity", "parity_pubsub", "shh", "shh_pubsub", "parity_set", "traces", "rpc", "parity_accounts", "pubsub"]
+apis = ["web3", "eth", "net", "personal", "parity", "parity_pubsub", "parity_set", "traces", "rpc", "parity_accounts", "pubsub"]
 jsonrpc_threads = 16
 jsonrpc_server_threads = 16
-
 
 
 [websockets]
@@ -30,6 +28,7 @@ port = 8455
 [footprint]
 db_compaction = "hdd"
 fat_db = "on"
+pruning= "archive"
 
 [ipc]
 disable = true

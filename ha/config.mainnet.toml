@@ -4,12 +4,10 @@ chain = "/srv/config/chain.json"
 db_path = "/srv/ducatusx/chains"
 keys_path = "/srv/keys"
 identity = ""
-light = false
 
 [network]
 allow_ips = "public"
 port = 30301
-# nat = "extip:{{ ansible_host }}"
 
 [rpc]
 interface = "all"
