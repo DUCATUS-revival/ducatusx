@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  ducatusx1:
+    image: openethereum/openethereum:v3.3.3'
+    volumes:
+      - '.docker/node1/data:/srv/ducatusx/'
+      - "ha/config.testnet.toml:/srv/config/config.toml"
+      - "chain.testnet.json:/srv/config/chain.json"
+      
+    user: root
+    restart: unless-stopped
+    command:
+      - --config=/srv/config/config.toml
+    ports:
+      - "58545:8545/tcp"
+      - "58455:8455/tcp"
+      - "530300:30300/tcp"
+      - "530300:30300/udp"
+  ducatusx2:
+    image: 'openethereum/openethereum:v3.3.3'
+    volumes:
+      - '.docker/node2/data:/srv/ducatusx/'
+      - "ha/config.testnet.toml:/srv/config/config.toml"
+      - "chain.testnet.json:/srv/config/chain.json"
+      
+    user: root
+    restart: unless-stopped
+    command:
+      - --config=/srv/config/config.toml
+    ports:
+      - "68545:8545/tcp"
+      - "68455:8455/tcp"
+      - "630300:30300/tcp"
+      - "630300:30300/udp"

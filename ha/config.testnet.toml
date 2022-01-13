@@ -1,0 +1,40 @@
+[parity]
+base_path = "/srv/ducatusx/"
+chain = "/srv/config/chain.json"
+db_path = "/srv/ducatusx/chains"
+keys_path = "/srv/keys"
+identity = ""
+light = false
+
+[network]
+allow_ips = "public"
+port = 30300
+
+[rpc]
+interface = "all"
+cors = ["all"]
+port = 8545
+apis = ["web3", "eth", "net", "personal", "parity", "parity_pubsub", "shh", "shh_pubsub", "parity_set", "traces", "rpc", "parity_accounts", "pubsub"]
+jsonrpc_threads = 16
+jsonrpc_server_threads = 16
+
+
+
+[websockets]
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts", "pubsub"]
+disable = false
+interface = "all"
+max_connections = 10000
+port = 8455
+
+[footprint]
+db_compaction = "hdd"
+fat_db = "on"
+
+[ipc]
+disable = true
+
+[misc]
+logging = "own_tx=trace"
+log_file = "/srv/ducatusx/debug.log"
+color = true
