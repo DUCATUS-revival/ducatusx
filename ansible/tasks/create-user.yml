@@ -1,0 +1,37 @@
+- name: Install deployment dependencies
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: Make sure we have a 'sudo' group
+      group:
+        name: sudo
+        state: present
+
+    - name: Create backend user
+      user:
+        name: backend
+        groups: sudo
+        state: present
+        createhome: yes
+
+    - name: Allow 'sudo' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo   ALL=(ALL:ALL) NOPASSWD:ALL'
+        validate: 'visudo -cf %s'
+
+    - name: Set up authorized keys for the backend user
+      authorized_key: 
+        user: backend 
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+        state: present
+
+
+
+
+        
+

@@ -5,9 +5,16 @@ verbosity :=
 
 ansible_cfg := ANSIBLE_CONFIG=$(shell pwd)/ansible/ansible.cfg
 
+local_parity_compose := docker-compose.local.yml
+
 
 # ------ #
 # Install dependencies
+# Setup users
+create_user:
+	$(ansible_cfg) ansible-playbook -i=$(hosts_path) -l $(service) ansible/tasks/create-user.yml $(verbosity)
+
+
 
 # All nodes if w/o service or selected node by ansible hostname
 setup_deps:
@@ -40,3 +47,17 @@ docker_destroy:
 # Configuration update (predefined group)
 
 update: setup_global docker_build
+
+
+# ------ #
+# Create new parity account with keys
+create_parity_account:
+	sudo docker-compose -f  $(local_parity_compose) up -d
+	sudo docker-compose -f  $(local_parity_compose) exec ducatusx parity account new
+	sudo docker-compose -f  $(local_parity_compose) exec ducatusx cp -r /root/.local/share/io.parity.ethereum/keys/ethereum/ /temp_data/
+	sudo docker-compose down
+
+put_keys_mainnet:
+	mkdir -p ansible/keys/mainnet/$(node)/keys/DUCX_main
+	sudo cp local_docker_data/ethereum/UTC* ansible/keys/mainnet/$(node)/keys/DUCX_main
+	sudo rm -rf local_docker_data/ethereum
