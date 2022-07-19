@@ -59,5 +59,5 @@ create_parity_account:
 
 put_keys_mainnet:
 	mkdir -p ansible/keys/mainnet/$(node)/keys/DUCX_main
-	sudo cp local_docker_data/ethereum/UTC* ansible/keys/mainnet/$(node)/keys/DUCX_main
+	sudo mv local_docker_data/ethereum/UTC* ansible/keys/mainnet/$(node)/keys/DUCX_main
 	sudo rm -rf local_docker_data/ethereum
