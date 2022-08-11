@@ -16,16 +16,33 @@
   },
   "params": {
     "gasLimitBoundDivisor": "0x400",
-    "maximumExtraDataSize": "0x20",
+    "maximumExtraDataSize": "0xffff",
     "minGasLimit": "0x5208",
     "networkID": "0x6773",
-    "eip155Transition": 0,
-    "validateChainIdTransition": 0,
-    "eip140Transition": 0,
-    "eip145Transition": 0,
-    "eip211Transition": 0,
-    "eip214Transition": 0,
-    "eip658Transition": 0
+    "chainID": "0x6773",
+    "eip155Transition": "0x16C9FC",
+    "validateChainIdTransition": "0x16C9FC",
+    "eip140Transition": "0x16C9FC",
+    "eip145Transition": "0x16C9FC",
+    "eip211Transition": "0x16C9FC",
+    "eip214Transition": "0x16C9FC",
+    "eip658Transition": "0x16C9FC",
+    "eip150Transition": "0x16C9FC",
+    "eip160Transition": "0x16C9FC",
+    "eip161abcTransition": "0x16C9FC",
+    "eip161dTransition": "0x16C9FC",
+    "eip1014Transition": "0x16C9FC",
+    "eip1052Transition": "0x16C9FC",
+    "eip1283Transition": "0x16C9FC", 
+    "eip1344Transition": "0x16C9FC",
+    "eip1706Transition": "0x16C9FC",
+    "eip1884Transition": "0x16C9FC",
+    "eip2028Transition": "0x16C9FC",
+    "eip2929Transition": "0x16C9FC",
+    "eip2930Transition": "0x16C9FC",
+    "eip3198Transition": "0x16C9FC",
+    "eip3541Transition": "0x16C9FC",
+    "eip3529Transition": "0x16C9FC"
   },
   "genesis": {
     "seal": {
@@ -42,8 +59,178 @@
     "0x0000000000000000000000000000000000000002": { "balance": "1", "builtin": { "name": "sha256", "pricing": { "linear": { "base": 60, "word": 12 } } } },
     "0x0000000000000000000000000000000000000003": { "balance": "1", "builtin": { "name": "ripemd160", "pricing": { "linear": { "base": 600, "word": 120 } } } },
     "0x0000000000000000000000000000000000000004": { "balance": "1", "builtin": { "name": "identity", "pricing": { "linear": { "base": 15, "word": 3 } } } },
-    "0x002fe643577d06f18ecf13ec2080181f2809f38a": { "balance": "0x283714524c64b2c64ca0000"}
+    "0x002fe643577d06f18ecf13ec2080181f2809f38a": { "balance": "0x283714524c64b2c64ca0000"},
+    "0x0000000000000000000000000000000000000005": {
+      "builtin": {
+        "name": "modexp",
+        "pricing": {
+          "0": {
+            "info": "EIP-2565: ModExp Gas Cost. Berlin hardfork",
+            "price": {
+              "modexp2565": {}
+            }
+          }
+        }
+      }
     },
+    "0x0000000000000000000000000000000000000006": {
+      "builtin": {
+        "name": "alt_bn128_add",
+        "pricing": {
+          "0": {
+            "info": "EIP 1108 transition",
+            "price": {
+              "alt_bn128_const_operations": {
+                "price": 150
+              }
+            }
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000007": {
+      "builtin": {
+        "name": "alt_bn128_mul",
+        "pricing": {
+          "0": {
+            "info": "EIP 1108 transition",
+            "price": {
+              "alt_bn128_const_operations": {
+                "price": 6000
+              }
+            }
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000008": {
+      "builtin": {
+        "name": "alt_bn128_pairing",
+        "pricing": {
+          "0": {
+            "info": "EIP 1108 transition",
+            "price": {
+              "alt_bn128_pairing": {
+                "base": 45000,
+                "pair": 34000
+              }
+            }
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000009": {
+      "builtin": {
+        "name": "blake2_f",
+        "activate_at": "0x00",
+        "pricing": {
+          "blake2_f": {
+            "gas_per_round": 1
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000a": {
+      "builtin": {
+        "name": "bls12_381_g1_add",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 600
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000b": {
+      "builtin": {
+        "name": "bls12_381_g1_mul",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 12000
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000c": {
+      "builtin": {
+        "name": "bls12_381_g1_multiexp",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_g1_multiexp": {
+            "base": 12000
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000d": {
+      "builtin": {
+        "name": "bls12_381_g2_add",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 4500
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000e": {
+      "builtin": {
+        "name": "bls12_381_g2_mul",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 55000
+          }
+        }
+      }
+    },
+    "000000000000000000000000000000000000000f": {
+      "builtin": {
+        "name": "bls12_381_g2_multiexp",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_g2_multiexp": {
+            "base": 55000
+          }
+        }
+      }
+    },
+    "0000000000000000000000000000000000000010": {
+      "builtin": {
+        "name": "bls12_381_pairing",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_pairing": {
+            "base": 115000,
+            "pair": 23000
+          }
+        }
+      }
+    },
+    "0000000000000000000000000000000000000011": {
+      "builtin": {
+        "name": "bls12_381_fp_to_g1",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 5500
+          }
+        }
+      }
+    },
+    "0000000000000000000000000000000000000012": {
+      "builtin": {
+        "name": "bls12_381_fp2_to_g2",
+        "activate_at": "0x7fffffffffffff",
+        "pricing": {
+          "bls12_const_operations": {
+            "price": 110000
+          }
+        }
+      }
+    }
+  },
  "nodes": [
     "enode://82caa5fbcb7f71dfaa10ffef4c915644e55921400544170ecd244a2dc325a2415b1af5870d1036a860a336f985ac28149d5063c18c9b07518db8ce8cdfe455d5@195.181.242.115:30301",
     "enode://771e47b7fdd94d5502a60f3cf729180c7ca59663210ec11c8a2050fb99e68fbd3dbe8abc5f5b5f958b2996cbf491535fd160d673f72a1e83325896f899359078@212.24.108.89:30301",
