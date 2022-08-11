@@ -26,6 +26,4 @@ services:
       - "8456:8456/tcp"
       - "30301:30301/tcp"
       - "30301:30301/udp"
-    deploy:
-      mode: global
   

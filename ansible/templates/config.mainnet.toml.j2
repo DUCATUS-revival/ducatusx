@@ -4,7 +4,6 @@ chain = "/srv/config/chain.json"
 db_path = "/srv/ducatusx/chains"
 keys_path = "/srv/keys"
 identity = ""
-light = false
 
 [network]
 allow_ips = "public"
@@ -42,7 +41,7 @@ password = ["/srv/config/node.pwd"]
 
 [mining]
 engine_signer = "{{ node_eth_address }}"
-min_gas_price = 0x1DCD65000
+min_gas_price = 233000000000
 force_sealing = true
 reseal_on_txs = "all"
 reseal_min_period = 40000

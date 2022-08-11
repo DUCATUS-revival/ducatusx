@@ -33,6 +33,12 @@ Example: `make setup_deps service=host1,host2`
 8. Go to new node (worker) server and join to Swarm by running command that was outputted on previous part
 9. Wait for some time (usually 3-10 minutes), run `docker ps` on new node - it will show one container, and you can check logs on it by `docker logs -f id_of_cointainer`
 
+#### Manager node
+
+Manager node installs similarly, but uses `docker-compose.swarm.yml` compose file.
+To update current stack, run:
+1. `docker stack deploy -c <(docker-compose -f docker-compose.swarm.yml config) ducatusx`
+
 ### Creating new Parity account for nodes
 
 1. Fill `PARITY_WORKER_PATH` in .env with full path of cloned repo on you machine (for example: /home/user/ducatusx)
