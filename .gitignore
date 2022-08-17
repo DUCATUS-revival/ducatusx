@@ -6,4 +6,5 @@ data
 config.toml
 chain.json
 node.pwd
-
+!configs/
+!compose-keys/*
