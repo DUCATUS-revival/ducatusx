@@ -18,11 +18,10 @@ Chain specification file and global node configs located in:
 1. Clone this repository
 
 2. Create `.env` file and fill it as following example: `env.example`
-
-OpenEthereum version must be set as `PARITY_VERSION` in `.env`
-OpenEthereum version can be set to any stable version, at this moment v3.3.1 provides optimal experience. 
-Persistent node files will be saved to path `PARITY_WORKER_PATH`. 
-Configuration files will be taken from `PARITY_WORKER_PATH` folder.
+- OpenEthereum version must be set as `PARITY_VERSION` in `.env`
+- OpenEthereum version can be set to any stable version, at this moment v3.3.1 provides optimal experience. 
+- Persistent node files will be saved to path `PARITY_WORKER_PATH`. 
+- Configuration files will be taken from `PARITY_WORKER_PATH` folder.
 
 3. Run `source .env`
 4. Copy configuration files:
