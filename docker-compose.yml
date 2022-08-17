@@ -1,8 +1,8 @@
 version: '3.7'
 services:
   ducatusx:
-    image: 'parity/parity:${PARITY_VERSION}'
-    # image: 'openethereum/openethereum:${OPENETHEREUM_VERSION}'
+    # image: 'parity/parity:${PARITY_VERSION}'
+    image: 'openethereum/openethereum:${PARITY_VERSION}'
     volumes:
       - '${PARITY_WORKER_PATH}/data:/srv/ducatusx/'
       - '${PARITY_WORKER_PATH}/keys:/srv/keys/'
@@ -26,4 +26,4 @@ services:
       - "8456:8456/tcp"
       - "30301:30301/tcp"
       - "30301:30301/udp"
-
+  

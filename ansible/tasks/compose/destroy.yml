@@ -9,13 +9,13 @@
     command:
       cmd: >
         docker-compose
-        -f {{ manager_workdir }}/{{ docker_compose_file }}
+        -f {{ node_workdir }}/{{ docker_compose_file }}
         down
 
 
   - name: Delete project directory
     file:
-      path: "{{ manager_workdir }}"
+      path: "{{ node_workdir }}"
       state: absent
       
       

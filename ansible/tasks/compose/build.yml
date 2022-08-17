@@ -10,7 +10,7 @@
     command:
       cmd: >
         docker-compose
-        -f {{ manager_workdir }}/{{ docker_compose_file }}
+        -f {{ node_workdir }}/{{ docker_compose_file }}
         down
 
   # - name: Prune unused Docker files (images, containers, networks)
@@ -22,5 +22,5 @@
     command:
       cmd: >
         docker-compose
-        -f {{ manager_workdir }}/{{ docker_compose_file }}
+        -f {{ node_workdir }}/{{ docker_compose_file }}
         up -d

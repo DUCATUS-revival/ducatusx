@@ -11,19 +11,17 @@
         path: "/var/www"
         state: directory
 
-    - name: Setup manager 
+    - name: Setup node 
       block:
         - name: Clone repository
           git:
             repo: https://github.com/DUCATUS-revival/ducatusx.git
-            dest: "{{ manager_workdir }}"
+            dest: "{{ node_workdir }}"
 
         - name: Set env
           template: 
             src: ../templates/env.j2
-            dest: "{{ manager_workdir }}/.env"
-
-      # when: (is_swarm_manager is defined) and (is_swarm_manager == True)
+            dest: "{{ node_workdir }}/.env"
 
     - name: Create config directory
       file:
@@ -39,7 +37,7 @@
       block:
         - name: Copy chain.json (testnet)
           copy:
-            src: ../../chain.testnet.json
+            src: ../../configs/testnet/chain.json
             dest: "{{ worker_config_path }}/chain.json"
             remote_src: False
 
@@ -67,7 +65,7 @@
       block:
         - name: Copy chain.json (mainnet)
           copy:
-            src: ../../chain.mainnet.json
+            src: ../../configs/mainnet/chain.json
             dest: "{{ worker_config_path }}/chain.json"
             remote_src: False
 

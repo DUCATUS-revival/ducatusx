@@ -8,5 +8,5 @@
     command:
       cmd: >
         docker-compose
-        -f {{ manager_workdir }}/{{ docker_compose_file }}
+        -f {{ node_workdir }}/{{ docker_compose_file }}
         stop

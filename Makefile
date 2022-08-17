@@ -5,7 +5,7 @@ verbosity :=
 
 ansible_cfg := ANSIBLE_CONFIG=$(shell pwd)/ansible/ansible.cfg
 
-local_parity_compose := docker-compose.local.yml
+local_parity_compose := keys-compose.yml
 
 
 # ------ #

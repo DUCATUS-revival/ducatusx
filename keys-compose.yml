@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  ducatusx:
+    image: 'openethereum/openethereum:${PARITY_VERSION}'
+    volumes:
+      - '${PARITY_WORKER_PATH}/local_docker_data:/temp_data'
+      
+    user: root
+    restart: unless-stopped
+
