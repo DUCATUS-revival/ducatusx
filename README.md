@@ -21,8 +21,14 @@ Chain specification file and global node configs located in:
 
 OpenEthereum version must be set as `PARITY_VERSION` in `.env`
 OpenEthereum version can be set to any stable version, at this moment v3.3.1 provides optimal experience. 
-Persistent node files will be saved to path `PARITY_WORKER_PATH`
+Persistent node files will be saved to path `PARITY_WORKER_PATH`. 
+Configuration files will be taken from `PARITY_WORKER_PATH` folder.
 
-3. 
+3. Run `source .env`
+4. Copy configuration files:
+Mainnet: `cp configs/mainnet/* $PARITY_WORKER_PATH/`
+Testnet: `cp configs/testnet/* $PARITY_WORKER_PATH/`
 
-
+5. If neccessary, make additional changes to OpenEthereum configuration (will be located in `<PARITY_WORKER_PATH>/config.toml`)
+6. Start node: `docker compose up -d`
+7. View node logs: `docker compose logs`
