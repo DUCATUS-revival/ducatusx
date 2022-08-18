@@ -1,4 +1,5 @@
 Mainnet node can stop syncing at block #110
+
 Current fix for this issue is to launch node from blochain snapshot.
 
 Link for snapshot archive:
