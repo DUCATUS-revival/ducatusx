@@ -25,8 +25,8 @@ Chain specification file and global node configs located in:
 
 3. Run `source .env`
 4. Copy configuration files:
-Mainnet: `cp configs/mainnet/* $PARITY_WORKER_PATH/`
-Testnet: `cp configs/testnet/* $PARITY_WORKER_PATH/`
+- Mainnet: `cp configs/mainnet/* $PARITY_WORKER_PATH/`
+- Testnet: `cp configs/testnet/* $PARITY_WORKER_PATH/`
 
 5. If neccessary, make additional changes to OpenEthereum configuration (will be located in `<PARITY_WORKER_PATH>/config.toml`)
 6. Start node: `docker compose up -d`
