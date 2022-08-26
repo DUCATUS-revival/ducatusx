@@ -22,6 +22,6 @@ mkdir -p snapshot_data
 tar xvf "$snapshot_file" -C snapshot_data
 docker-compose down
 sudo rm -rf "$PARITY_WORKER_PATH/data"
-mv snapshot_data/data "$PARITY_WORKER_PATH/data"
+mv "$PWD/snapshot_data/data" "$PARITY_WORKER_PATH/data"
 sudo chown root:root -R "$PARITY_WORKER_PATH/data"
 docker-compose up -d
