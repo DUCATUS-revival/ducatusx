@@ -10,14 +10,15 @@ Steps to run node from snapshot:
 
 0. Go to cloned repo directory (for example, `/var/www/ducatus`)
 1. Activate repo environment: `source .env`
-2. Download snapshot:
-* For mainnet: `wget https://bld.rocknblock.io/ducatus/ducatusx-mainnet-snapshot-latest.tar.gz`
-* For testnet: `wget https://bld.rocknblock.io/ducatus/ducatusx-testnet-snapshot-latest.tar.gz`
-4. Create folder to uncompress snapshot: `mkdir -p snapshot_data`
-5. Uncompress snapshot data: `tar xvf ducatusx-mainnet-snapshot-latest.tar.gz -C snapshot_data`
-6. Stop DucatusX node container: `docker compose down`
-7. Delete original data: `sudo rm -rf $PARITY_WORKER_PATH/data`
-8. Move snapshot data to node worker path: `mv snapshot_data/data $PARITY_WORKER_PATH/data`
-9. Apply root permissions: `sudo chown root:root -R $PARITY_WORKER_PATH/data`
-10. Launch DucatusX node again: `docker compose up -d`
-11. View logs: `docker compose logs -f`
+2. Download snapshot: `wget https://bld.rocknblock.io/ducatus/ducatusx-mainnet-snapshot-latest.tar.gz`
+3. Create folder to uncompress snapshot: `mkdir -p snapshot_data`
+4. Uncompress snapshot data: `tar xvf ducatusx-mainnet-snapshot-latest.tar.gz -C snapshot_data`
+5. Stop DucatusX node container: `docker compose down`
+6. Delete original data: `sudo rm -rf $PARITY_WORKER_PATH/data`
+7. Move snapshot data to node worker path: `mv snapshot_data/data $PARITY_WORKER_PATH/data`
+8. Apply root permissions: `sudo chown root:root -R $PARITY_WORKER_PATH/data`
+9. Launch DucatusX node again: `docker compose up -d`
+10. View logs: `docker compose logs -f`
+
+
+Also available as script: `./load-snapshot.sh <mainnet/testnet>`
