@@ -31,3 +31,8 @@ Chain specification file and global node configs located in:
 5. If neccessary, make additional changes to OpenEthereum configuration (will be located in `<PARITY_WORKER_PATH>/config.toml`)
 6. Start node: `docker compose up -d`
 7. View node logs: `docker compose logs`
+
+## Applying snapshot
+
+There can be some issues with synchronization from zero block. Solution for this problem is to run new node from snapshot data
+Instructions for applying snapshot can be found here: [SNAPSHOT.md](SNAPSHOT.md)
