@@ -32,6 +32,9 @@ pruning = "archive"
 [ipc]
 disable = true
 
+[mining]
+min_gas_price = 0x2B4F2C6AF9E8
+
 [misc]
 logging = "own_tx=trace"
 log_file = "/srv/ducatusx/debug.log"
