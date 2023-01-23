@@ -33,7 +33,7 @@ pruning = "archive"
 disable = true
 
 [mining]
-min_gas_price = 0x2B4F2C6AF9E8
+min_gas_price = 47619047619048
 
 [misc]
 logging = "own_tx=trace"
